@@ -12,7 +12,14 @@ console.log(numeriGenerati)
 var numeroScelto;
 var listaNumeriScelti = [];
 
-var i = 0
-while (numeroScelto != numeriGenerati[i]) {
-  numeroScelto = prompt('Scegli un numero');
+while (numeriGenerati.indexOf(numeroScelto) === -1) {
+  numeroScelto = parseInt(prompt('Scegli un numero'));
+  listaNumeriScelti.push(numeroScelto);
+  if(numeriGenerati.indexOf(numeroScelto) !== -1)
+    console.log('sei esploso!')
+  else if (listaNumeriScelti.length === 5)
+    alert('Hai vinto!')
 }
+var punteggio = listaNumeriScelti.length
+console.log(listaNumeriScelti)
+console.log('Il tuo punteggio è di ' + punteggio)
