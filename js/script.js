@@ -23,7 +23,7 @@ function defeat(array, num) {
 var numeriGenerati = [];
 var min = 1;
 var max = 100;
-var puntiPerVincere = max - 95; // perchè 16 è il numero delle mine
+var puntiPerVincere = max - 16; // perchè 16 è il numero delle mine
 
 while (numeriGenerati.length < 16) {
   var i = Math.floor(Math.random() * (max + 1 - min) + min);
