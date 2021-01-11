@@ -19,13 +19,14 @@ function defeat(array, num) {
   }
 }
 
-function game(max) {
-
-}
 // Fine funzioni.
 // Bonus:
 var max;
-var sceltaDifficoltà = parseInt(prompt('Seleziona la difficoltà con un numero tra 0 e 2'))
+var sceltaDifficoltà;
+
+while (sceltaDifficoltà !== 0 && sceltaDifficoltà !== 1 && sceltaDifficoltà !== 2) {
+sceltaDifficoltà = parseInt(prompt('Seleziona la difficoltà scegliendo un numero tra 0 e 2'))
+ }
 switch (sceltaDifficoltà) {
   case 0:
     max = 100;
@@ -37,7 +38,7 @@ switch (sceltaDifficoltà) {
     max = 50;
     break;
   default:
-  alert('Valore non valido. Ricarica la pagina.')
+    max = 60;
 }
 // Il computer deve generare 16 numeri casuali compresi tra 1 e 100:
 var numeriGenerati = [];
