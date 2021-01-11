@@ -1,7 +1,29 @@
-// Il computer deve generare 16 numeri casuali compresi tra 1 e 100
+// Funzioni:
+function isValid(array, num) {
+  if (num < 1 || num > 100) {
+    return false;
+  }
+  if (array.indexOf(num) !== -1) {
+    return false;
+  }
+  if (isNaN(num)) {
+    return false;
+  } else {
+    return true;
+  }
+}
+
+function defeat(array, num) {
+  if (array.indexOf(num) !== -1) {
+    return true;
+  }
+}
+// Fine funzioni.
+// Il computer deve generare 16 numeri casuali compresi tra 1 e 100:
 var numeriGenerati = [];
 var min = 1;
 var max = 100;
+var puntiPerVincere = max - 95; // perchè 16 è il numero delle mine
 
 while (numeriGenerati.length < 16) {
   var i = Math.floor(Math.random() * (max + 1 - min) + min);
@@ -9,30 +31,37 @@ while (numeriGenerati.length < 16) {
     numeriGenerati.push(i)
   }
 }
+// Ordino i numeri generati in ordine crescente:
 numeriGenerati.sort(function(a, b) {
   return a - b;
 });
 console.log(numeriGenerati)
 // Adesso dobbiamo chiedere all'utente di inserire un numero alla volta,
-// finchè non finiranno i numeri a disposizione, oppure finchè non ne sceglie uno dei 16 generati
+// finchè non finiranno i numeri a disposizione (vittoria), oppure finchè
+// non ne sceglierà uno dei 16 generati randomicamente (sconfitta):
 var numeroScelto;
 var listaNumeriScelti = [];
 
-while (numeriGenerati.indexOf(numeroScelto) === -1) {
+while (!defeat(numeriGenerati, numeroScelto) && listaNumeriScelti.length !== puntiPerVincere) {
   numeroScelto = parseInt(prompt('Scegli un numero'));
-  if (listaNumeriScelti.indexOf(numeroScelto) === -1 && numeroScelto > 0 && numeroScelto < 100)  {
+  if (isValid(listaNumeriScelti, numeroScelto))  {
     listaNumeriScelti.push(numeroScelto);
  } else {
-   alert('devi scegliere numeri diversi inclusi tra 1 e 100')
+   alert('Il numero non è valido')
  }
-  if(numeriGenerati.indexOf(numeroScelto) !== -1) {
-    console.log('sei esploso!')
-    break;
-  } if (listaNumeriScelti.length === 5) {
-    alert('Hai vinto!')
-    break;
+  if(defeat(numeriGenerati, numeroScelto)) {
+    console.log('Sei esploso!')
+  } if (listaNumeriScelti.length === puntiPerVincere) {
+    console.log('Hai vinto!')
   }
 }
-var punteggio = listaNumeriScelti.length -1;
+
+// Stampo il punteggio finale:
+var punteggio;
+if (listaNumeriScelti.length === puntiPerVincere) {
+  punteggio = listaNumeriScelti.length;
+} else {
+  punteggio = listaNumeriScelti.length - 1;
+}
 console.log(listaNumeriScelti)
 console.log('Il tuo punteggio è di ' + punteggio)
