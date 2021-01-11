@@ -18,11 +18,30 @@ function defeat(array, num) {
     return true;
   }
 }
+
+function game(max) {
+
+}
 // Fine funzioni.
+// Bonus:
+var max;
+var sceltaDifficoltà = parseInt(prompt('Seleziona la difficoltà con un numero tra 0 e 2'))
+switch (sceltaDifficoltà) {
+  case 0:
+    max = 100;
+    break;
+  case 1:
+    max = 80;
+    break;
+  case 2:
+    max = 50;
+    break;
+  default:
+  alert('Valore non valido. Ricarica la pagina.')
+}
 // Il computer deve generare 16 numeri casuali compresi tra 1 e 100:
 var numeriGenerati = [];
 var min = 1;
-var max = 100;
 var puntiPerVincere = max - 16; // perchè 16 è il numero delle mine
 
 while (numeriGenerati.length < 16) {
